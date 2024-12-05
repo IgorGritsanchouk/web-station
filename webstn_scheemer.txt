@@ -1,0 +1,57 @@
+CREATE TABLE IF NOT EXISTS customer(
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    username varchar(255),
+    password varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS product (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    price double precision NOT NULL,
+    type varchar(100)
+);
+
+CREATE TABLE IF NOT EXISTS product_order (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    description varchar(255),
+    date timestamp,
+    price double precision,
+    quantity bigint,
+    customer_id_fk bigint,
+    product_id_fk bigint,
+    foreign key (customer_id_fk) references customer(id),
+    foreign key (product_id_fk) references product(id)
+);
+
+CREATE TABLE product_shipment (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    description varchar(255),
+    start_date timestamp,
+    end_date timestamp,
+    start_location varchar(255),
+    end_location varchar(255),
+    customer_id_fk bigint,
+    product_order_id_fk bigint,
+    foreign key (customer_id_fk) references customer(id),
+    foreign key (product_order_id_fk) references product_order(id)
+);
+
+CREATE TABLE history_message (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    date timestamp,
+    message varchar(255),
+    message_json json
+);
+
+CREATE TABLE message_history (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    date timestamp,
+    message varchar(255),
+    message_json json,
+    customer_id_fk bigint,
+    product_shipment_id_fk bigint,
+    foreign key (customer_id_fk) references customer(id),
+    foreign key (product_shipment_id_fk) references product_shipment(id)
+);
