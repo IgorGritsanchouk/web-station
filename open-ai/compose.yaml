@@ -1,0 +1,45 @@
+  name: web-station
+  services:
+    activemq-classic:
+      image: apache/activemq-classic:5.18.6
+      restart: always
+      container_name: activemq-classic-cnr
+      ports:
+        - 61616:61616
+        - 8161:8161
+
+    scanner:
+      image: igr025/scanner-21-img:v0.1
+      restart: always
+      container_name: scanner-v01-cnr
+      ports:
+        - 81:81
+      depends_on:
+        - activemq-classic
+
+#    mysql:
+#      container_name: mysql-cnr
+#      restart: always
+#      ports:
+#        - 3306:3306
+#      environment:
+#        - MYSQL_ROOT_PASSWORD=lera
+#        - MYSQL_DATABASE=aero
+#      image: mysql:lts
+
+    webstn:
+      image: igr025/webstn-21-img:v0.1
+      restart: always
+      container_name: webstn-v01-cnr
+      ports:
+        - 80:80
+      depends_on:
+ #       - mysql
+        - activemq-classic
+
+    open-ai-clone:
+      image: igr025/openai-clone-21-img:v0.1
+      restart: always
+      container_name: openai-clone-v01-cnr
+      ports:
+        - 82:82
