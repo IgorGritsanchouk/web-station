@@ -12,6 +12,7 @@
   <modules>
     <module>shared</module>
     <module>scanner</module>
+    <module>webstn</module>
   </modules>
 
   <properties>

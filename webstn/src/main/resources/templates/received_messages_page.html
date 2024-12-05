@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Webstn Received messages page</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">WEBSTN received SCNR messages page</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" th:href="@{localhost:81/scanner/message/new}">Scanner send new message</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/webstn/received-messages}">Received Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/h2-console}">H2 DB</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class ="container">
+    <div class = "row">
+        <h1> Webstn Received scanner messages </h1>
+    </div>
+
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{localhost:81/scanner/message/new}" target="_blank" class = "btn btn-primary btn-sm mb-3"> Scanner send new message</a>
+        </div>
+    </div>
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th> Message Id</th>
+            <th> Received message text</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div th:if="${messages != null && messages.size()>0}">
+            <tr th:each = "message: ${messages}">
+                <td th:text = "${message.id}"></td>
+                <td th:text = "${message.message}"></td>
+            </tr>
+        </div>
+        <div th:if="${messages == null || messages.size()<1}">
+            <tr>
+                <td>N/A</td>
+                <td>NO MESSAGES RECEIVED YET</td>
+            </tr>
+        </div>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>
