@@ -16,7 +16,7 @@ Compile and package jar scanner-0.0.1-SNAPSHOT.jar and aero-0.0.1-SNAPSHOT.jar
 AND build images as below. Make sure Docker desktop is running
 3) webstn> docker build -f Dockerfile -t igr025/webstn-21-img:v0.1 .
 4) scanner> docker build -f Dockerfile -t igr025/scanner-21-img:v0.1 .
-5) open-ai> docker build -f Dockerfile -t igr025/openai-clone-21-img:v0.1 .
+5) open-ai> docker build -f Dockerfile -t igr025/chat-bot-ai-21-img:v0.1 .
 5) Push new images to docker hub  igr025  account ..... ok
    docker push igr025/webstn-21-img:v0.1
    docker push igr025/scanner-21-img:v0.1
