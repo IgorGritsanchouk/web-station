@@ -10,6 +10,9 @@ target/
 .idea/vcs.xml
 .idea/encodings.xml
 .idea/workspace.xml
+.idea/dataSources.xml
+.idea/sqldialects.xml
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml

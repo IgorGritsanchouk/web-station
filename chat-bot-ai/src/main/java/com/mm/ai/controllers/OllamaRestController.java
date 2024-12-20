@@ -17,9 +17,14 @@ public class OllamaRestController {
 
     private final ChatClient chatClient;
 
-    public OllamaRestController(@Qualifier("ollamaChatClient") ChatClient chatClient) {
+    // removed ollama. Use only openAi as both do not work with pgvector db
+    public OllamaRestController(@Qualifier("openAIChatClient") ChatClient chatClient) {
         this.chatClient = chatClient;
     }
+
+    //public OllamaRestController(@Qualifier("ollamaChatClient") ChatClient chatClient) {
+    //    this.chatClient = chatClient;
+    //}
 
     @PostMapping("/ollama-rest-chat")
     public String ollamaRestChat(@RequestParam String message) {
