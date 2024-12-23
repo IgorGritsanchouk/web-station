@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -78,10 +79,12 @@ public class BeanConfig {
             @Value("${documents.directory.path}") String directoryPath
     ) {
 
+        ClassPathResource classPathResource = new ClassPathResource(directoryPath);
         //String currentPath = new java.io.File(".").getCanonicalPath();
 
         return args -> {
-            Path directory = Paths.get(directoryPath);
+            Path directory = Paths.get(classPathResource.getFile().getAbsolutePath());
+            //Path directory = Paths.get(directoryPath);
             logger.info("PDF directory: {}", directoryPath);
             try (var paths = Files.list(directory)) {
                 paths.filter(Files::isRegularFile)

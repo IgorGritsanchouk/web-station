@@ -13,18 +13,18 @@ services:
 #    volumes:
 #      - ./postgres-ig-volume:/var/lib/ig_pgvector/data
 
-  chat-bot-ai:
+#  chat-bot-ai:
 ##      build: .
-      image: igr025/chat-bot-ai-21-img:v0.1
-      container_name: chat-bot-ai-cnr
-      ports:
-        - 88:88
-      environment:
-        db-url: jdbc:postgresql://pgvector-db-cnr:5432/pg-advisor-db
-        db-username: advisor
-        db-password: advisor
-      depends_on:
-          - pgvector
+#      image: igr025/chat-bot-ai-21-img:v0.1
+#      container_name: chat-bot-ai-cnr
+#      ports:
+#        - 88:88
+#      environment:
+#        db-url: jdbc:postgresql://pgvector-db-cnr:5432/pg-advisor-db
+#        db-username: advisor
+#        db-password: advisor
+#      depends_on:
+#          - pgvector
 #      restart: always
 
   pgadmin:
