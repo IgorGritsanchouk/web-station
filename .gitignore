@@ -12,6 +12,7 @@ target/
 .idea/workspace.xml
 .idea/dataSources.xml
 .idea/sqldialects.xml
+.idea/jpa-buddy.xml
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
