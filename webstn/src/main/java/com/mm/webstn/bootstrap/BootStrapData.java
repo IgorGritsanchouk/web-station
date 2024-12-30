@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import com.mm.webstn.domain.HistoryMessage;
 import com.mm.webstn.repository.MessageRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.Set;
 @Component
 public class BootStrapData implements CommandLineRunner {
 
+    private final Logger logger = LoggerFactory.getLogger(BootStrapData.class);
+
     private final MessageRepository messageRepository;
 
     public BootStrapData(MessageRepository messageRepository) {
@@ -23,7 +27,7 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("... START Bootstrap data ...");
+        logger.info("... START Bootstrap data ...");
 
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -35,7 +39,7 @@ public class BootStrapData implements CommandLineRunner {
         message1.setMessage("Fst Message to be saved.");
         messageRepository.save(message1);
 
-        System.out.println("...http://localhost:81/scanner/message/new...");
-        System.out.println("... END Boot strap data ...");
+        logger.info("...http://localhost:81/scanner/message/new...");
+        logger.info("... END Boot strap data ...");
     }
 }
