@@ -20,7 +20,7 @@ public class HomeRestController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
-    public String admin(){`
+    public String admin(){
         return "hello admin";
     }
 
