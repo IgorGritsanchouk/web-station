@@ -79,6 +79,11 @@ public class BeanConfig {
             @Value("${documents.directory.path}") String directoryPath
     ) {
 
+        if(!pgVectorLoad.equals("true")){
+            logger.info("PGVector database has already been populated.");
+            return args -> {};
+        }
+
         ClassPathResource classPathResource = new ClassPathResource(directoryPath);
         //String currentPath = new java.io.File(".").getCanonicalPath();
 
